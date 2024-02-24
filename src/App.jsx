@@ -1,7 +1,9 @@
 function App() {
   return (
     <>
-      <h2>Todo App Redux Toolkit</h2>
+      <h2 className="bg-purple-400 text-3xl text-center">
+        Todo App Redux Toolkit
+      </h2>
     </>
   );
 }
