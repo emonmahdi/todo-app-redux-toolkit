@@ -10,7 +10,7 @@ const FormAdd = () => {
     e.preventDefault();
 
     const newTodo = {
-      id: Math.floor(Math.random * 88888) + 10000,
+      id: Math.floor(Math.random() * 888888) + 100000,
       name: todo,
       isDone: false,
       createdAt: new Date().toLocaleString(),

@@ -1,14 +1,9 @@
 import { useSelector } from "react-redux";
 import FormAdd from "./components/FormAdd";
-const tableData = [
-  { id: 1, name: "John Doe", age: 25 },
-  { id: 2, name: "Jane Doe", age: 30 },
-  // Add more data as needed
-];
 
 function App() {
-  const { todos } = useSelector((state) => state);
-  console.log(todos);
+  const { list } = useSelector((state) => state.todo);
+  // console.log(list);
   // const dispatch = useDispatch();
   return (
     <>
@@ -27,7 +22,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((item) => (
+            {list.map((item) => (
               <tr className="text-center" key={item.id}>
                 <td className="py-2 px-4 border-b">{item.id}</td>
                 <td className="py-2 px-4 border-b">{item.name}</td>
