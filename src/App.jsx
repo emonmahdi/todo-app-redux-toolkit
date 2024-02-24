@@ -1,10 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormAdd from "./components/FormAdd";
+import img from "./assets/checked.png";
+import img2 from "./assets/remove.png";
+import { removeTodo } from "./redux/features/todos/todoSlice";
 
 function App() {
   const { list } = useSelector((state) => state.todo);
   // console.log(list);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const handleRemove = (todoId) => {
+    const isConfirmed = window.confirm("Are your sure to delete todo!");
+    if (isConfirmed) {
+      dispatch(removeTodo({ id: todoId }));
+    }
+  };
+
   return (
     <>
       <h2 className="text-3xl text-center my-4">Todo App Redux Toolkit</h2>
@@ -24,9 +35,33 @@ function App() {
           <tbody>
             {list.map((item) => (
               <tr className="text-center" key={item.id}>
-                <td className="py-2 px-4 border-b">{item.id}</td>
-                <td className="py-2 px-4 border-b">{item.name}</td>
-                <td className="py-2 px-4 border-b">{item.age}</td>
+                <td className="py-2 px-4 border-b text-left">
+                  <span className="font-bold"> {item.name}</span>
+                  <br />
+                  <span className="bg-gray-300 px-2 rounded-lg">
+                    {item.createdAt}
+                  </span>
+                </td>
+                <td className=" text-white rounded-lg">
+                  <span className="bg-red-500 p-2 rounded-lg">Pending</span>
+                </td>
+                <td className="py-2 px-4 border-b">
+                  <div className="flex items-center justify-between">
+                    <img
+                      src={img}
+                      width={20}
+                      style={{ cursor: "pointer" }}
+                      alt=""
+                    />
+                    <img
+                      src={img2}
+                      onClick={() => handleRemove(item.id)}
+                      width={20}
+                      style={{ cursor: "pointer" }}
+                      alt=""
+                    />
+                  </div>
+                </td>
                 {/* Add more cells as needed */}
               </tr>
             ))}
